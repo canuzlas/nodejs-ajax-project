@@ -11,6 +11,7 @@ require("./src/configs/mongoDBconnection")
 
 /* routers requires */
 const adminLoginRouter = require("./src/routers/admin/adminLoginRouter")
+const adminManagementRouter = require("./src/routers/admin/adminManagementRouter")
 
 /* app statics files */
 app.use(express.static(path.resolve(__dirname, "public")))
@@ -40,6 +41,7 @@ app.use(ejsLayout)
 app.use(express.urlencoded({ extended: true }))
 //routers use 
 app.use("/admin/management", adminLoginRouter)
+app.use("/admin/management/logged", adminManagementRouter)
 
 
 

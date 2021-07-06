@@ -8,6 +8,16 @@ const adminSessionCheckMw = (req,res,next)=>{
     }
 }
 
+const adminIsLoggedCheckMw = (req,res,next)=>{
+    if(req.session.admin){
+        return res.redirect("/admin/management/logged")
+    }else{
+        return next()
+    }
+}
+
 module.exports = {
-    adminSessionCheckMw
+    adminSessionCheckMw,
+    adminIsLoggedCheckMw
+    
 }

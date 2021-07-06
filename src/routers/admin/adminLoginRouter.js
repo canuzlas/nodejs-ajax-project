@@ -6,11 +6,8 @@ const adminLoginController = require("../../controllers/admin/adminLoginControll
 const adminSessionMw = require("../../middlewares/adminSessionCheck")
 
 /* admin login sayfası route işlemleri */
-router.get('/login', adminLoginController.adminLogin)
-router.get('/indexpage', adminSessionMw.adminSessionCheckMw, adminLoginController.adminShowIndexPage)
+router.get('/login', adminSessionMw.adminIsLoggedCheckMw, adminLoginController.adminLogin)
 
-
-
-router.post('/login', adminLoginController.adminLoginSignin)
+router.post('/login', adminSessionMw.adminIsLoggedCheckMw, adminLoginController.adminLoginSignin)
 
 module.exports = router
