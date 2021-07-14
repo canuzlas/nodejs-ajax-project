@@ -35,32 +35,37 @@
     </style>
 </head>
 
+
 <div class="card">
     <h1>
         <%- admin.admin_ad+" "+admin.admin_soyad %></h1>
     <p class=" title">admin</p>
 </div>
 
-<div class="container mt-5">
+<div class="mt-5 mb-5">
     <form id="adminProfileForm">
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="exampleInputEmail1">Email</label>
-                <input id="admin_email" type="email" name="admin_email" class="form-control" placeholder="Email Adresiniz" value="<%- admin.admin_email %> ">
+                <input id="admin_email" type="email" name="admin_email" class="form-control"
+                    placeholder="Email Adresiniz" value="<%- admin.admin_email %> ">
             </div>
             <div class="form-group col-sm-6">
                 <label for="exampleInputEmail1">Username</label>
-                <input id="admin_username" type="text" name="admin_username" class="form-control" placeholder="Kullanıcı Adınız" value="<%- admin.admin_username %> ">
+                <input id="admin_username" type="text" name="admin_username" class="form-control"
+                    placeholder="Kullanıcı Adınız" value="<%- admin.admin_username %> ">
             </div>
             <div class="form-group col-sm-6">
                 <label for="exampleInputPassword1">Şifre</label>
-                <input id="admin_password" type="password" name="admin_password" class="form-control"  placeholder="Şifreniz">
+                <input id="admin_password" type="password" name="admin_password" class="form-control"
+                    placeholder="Şifreniz">
             </div>
         </div>
         <div class="row ">
             <div class="form-group col-sm-4 offset-sm-4 ">
                 <button id="adminupdatebutton" type="button" class="btn btn-primary">Güncelle</button>
-            <div>
-        </div>
+                <div>
+                </div>
     </form>
 </div>
+<br><br><br><br><br>

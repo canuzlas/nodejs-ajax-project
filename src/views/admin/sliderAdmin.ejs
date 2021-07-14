@@ -1,0 +1,100 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Slider Tablosu</h6>
+    </div>
+    <div align="right">
+        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mr-3 mt-3 btn-sm">+
+            Slider Ekle</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Alt Açıklama</th>
+                        <th>Resim</th>
+                        <th>Daha Fazla</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sliders.forEach(slider=> { %>
+
+                        <tr class="<%- slider._id %>">
+                            <td>
+                                <%- slider.slider_baslik %>
+                            </td>
+                            <td>
+                                <%- slider.slider_altaciklama %>
+                            </td>
+                            <td>
+                                <div align="center">
+                                    <img height="40" width="60" src="/web/sliders/<%- slider.slider_resim %> ">
+                                </div>
+                            </td>
+                            <td>
+                                <%- slider.slider_more %>
+                            </td>
+                            <td>
+                                <div align="center">
+                                    <a id="<%-slider._id%>" style="text-decoration: none;"> <i style="font-size: 25px; color: red;" class="fas fa-trash slidersil"></i></a>
+                                  
+                                   <a style="text-decoration: none;" href="/admin/management/logged/updateslider/<%-slider._id%>"> <i style="font-size: 25px; color:blue ; margin-left: 10px;" class="far fa-edit"></i></a>
+                                </div>
+                               
+                            </td>
+                        </tr>
+
+                        <% }) %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Slider Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addsliderform" enctype="multipart/form-data" method="POST" action="/admin/management/logged/addslider">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Slider Başlık</label>
+                            <input id="slider_baslik" type="text" name="slider_baslik" class="form-control"
+                                placeholder="Slider Başlık">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Slider Alt Açıklama</label>
+                            <input id="slider_altaciklama" type="text" name="slider_altaciklama" class="form-control"
+                                placeholder="Slider kısa açıklama">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="exampleInputPassword1">Slider Resim</label>
+                            <input required id="slider_resim" type="file" name="slider_resim" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-12"><label for="slider_more">Slider Daha Fazla :    </label></div>
+                        <div class="form-group col-sm-12">
+                            <textarea name="slider_more" id="slider_more" cols="30" rows="5"></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                        <button id="sliderekle" type="button" class="btn btn-primary">Slider Ekle</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
