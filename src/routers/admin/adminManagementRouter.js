@@ -25,6 +25,8 @@ router.get('/socialmedia', adminSessionMw.adminSessionCheckMw, adminManagementCo
 /* social update get show social one get isteği */
 router.get('/updatesocial/:socialid', adminSessionMw.adminSessionCheckMw, adminManagementController.showOneSocialMedia)
 
+
+
 /* admin profil post */
 router.post('/updateadminprofile', adminSessionMw.adminSessionCheckMw, adminManagementController.updateToAdminProfile)
 /* addslider post */
@@ -35,6 +37,17 @@ router.post('/deleteslider', adminSessionMw.adminSessionCheckMw, adminManagement
 router.post('/updateslider/:sliderid', adminSessionMw.adminSessionCheckMw, multer.sliderMulter.single("slider_resim"), adminManagementController.updateSlider)
 /* updatesocial */
 router.post('/updatesocial', adminSessionMw.adminSessionCheckMw, adminManagementController.updateSocial)
+
+
+
+
+
+
+/* Admin Şifre Sıfırlama */
+router.post('/forgetmypass', adminManagementController.forgetMyPass)
+router.post('/verifycode', adminManagementController.verifyCode)
+router.post('/updatepassforadmin', adminManagementController.updatePassAdmin)
+
 
 
 

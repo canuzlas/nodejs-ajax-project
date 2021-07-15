@@ -2,7 +2,8 @@
 const md5 = require("md5")
 const fs = require("fs")
 const path = require("path")
-const resizeImg = require('resize-img');
+const resizeImg = require('resize-img')
+const nodemailer = require('nodemailer')
 
 
 //adminLoginModel required
@@ -27,8 +28,7 @@ const showAdminProfilePage = async (req, res) => {
 }
 /* admin profili güncelle */
 const updateToAdminProfile = async (req, res) => {
-    const sonuc = await adminModel.findById(req.session.admin._id)
-
+    const sonuc = await adminModel.findById(req.session.admin._id,(err,doc)=>{if(err) return res.send({ status: false })})
     if (sonuc) {
         const updateAdmin = await adminModel.findByIdAndUpdate(req.session.admin._id, { admin_email: req.body.admin_email, admin_username: req.body.admin_username, admin_password: md5(req.body.admin_password) })
         if (updateAdmin) {
@@ -162,6 +162,67 @@ const updateSocial = async (req,res)=>{
         return res.send({status:false})
     }
 }
+/* Admin Şifre Sıfırlama */
+const forgetMyPass = async (req,res)=>{
+    const email = req.body.email
+    
+    const adminfind = await adminModel.findOne({admin_email:email},(err,doc)=>{if(err)return res.send({status:false})})
+    if(adminfind){
+
+        const securitynumber = Math.floor(Math.random() * 999999) + 1
+        req.session.adminforgetpass = securitynumber
+        req.session.adminforgetpassmail = email
+        const transporter = nodemailer.createTransport({
+            host: 'mail.uzlasyazilim.com',
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'contact@uzlasyazilim.com',
+                pass: 's2ciyuzl4s'
+            },
+            tls: {
+                rejectUnauthorized: false
+              }
+        });
+        
+        const sendmail = await transporter.sendMail({
+            from: 'contact@uzlasyazilim.com',
+            to: 'contact@uzlasyazilim.com',
+            subject: 'Şifre Sıfırlama',
+            text: 'Lütfen gelen sayıyı karşınıza çıkan ekrana girininz. Sayı: '+securitynumber
+        });
+
+        if(sendmail){
+            return res.send({status:true})
+        }else{
+            return res.send({status:false})
+        }
+
+    }else{
+        return res.send({status:false})
+    }
+}
+/* code verify */
+const verifyCode = async (req,res)=>{
+    postedcode = req.body.code
+    orgcode = req.session.adminforgetpass
+
+    if(postedcode == orgcode){
+        res.send({status:true})
+    }else{
+        res.send({status:false})
+    }
+}
+
+const updatePassAdmin = async (req,res)=>{
+    pass = req.body.password
+    const sonuc = await adminModel.findOneAndUpdate({admin_email:req.session.adminforgetpassmail},{admin_password:md5(pass)},(err,doc)=>{if(err) return res.send({status:false})})
+    if(sonuc){
+        res.send({status:true})
+    }else{
+        res.send({status:false})
+    }
+}
 
 
 
@@ -180,5 +241,8 @@ module.exports = {
     updateSlider,
     showSocialMediaTable,
     showOneSocialMedia,
-    updateSocial
+    updateSocial,
+    forgetMyPass,
+    verifyCode,
+    updatePassAdmin
 }

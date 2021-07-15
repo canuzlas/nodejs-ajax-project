@@ -17,9 +17,9 @@
                                 </div>
                                 <form class="adminLogin">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user"
-                                            id="exampleInputEmail" aria-describedby="emailHelp"
-                                            placeholder="Kullanıcı Adın" name="admin_username">
+                                        <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                            aria-describedby="emailHelp" placeholder="Kullanıcı Adın"
+                                            name="admin_username">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
@@ -32,7 +32,11 @@
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Şifremi Unuttum</a>
+                                    <button id="forgetmypass" type="button" class="btn btn-primary btn-sm"
+                                        data-toggle="modal" data-target="#exampleModal">
+                                        Şifreni mi unuttun ?
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -40,6 +44,80 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Üzülme Hallederiz :)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div id="email">
+                    <form id="emailform">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email Adresin</label>
+                            <input type="email" class="form-control" id="emailadress" aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">Admin hesabının email adresini gir
+                                lütfen.</small>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button id="nextemail" type="button" class="btn btn-primary">Devam</button>
+                    </div>
+                </div>
+                <div style="display: none;" id="verify">
+                    <form id="emailform">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">verify code</label>
+                            <input type="number" class="form-control" id="verifycode" aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">Epostana gelen kodu giriniz.</small>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button id="nextverify" type="button" class="btn btn-primary">Devam</button>
+                    </div>
+                </div>
+                <div style="display: none;" id="passwordform">
+                    <form id="emailform">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Yeni Şifren *</label>
+                            <input type="password" class="form-control" id="newpass1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Şifre Tekrarı *</label>
+                            <input type="password" class="form-control" id="newpass2" aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">Şifreni Tekrarla.</small>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button id="updatepassword" type="button" class="btn btn-primary">Şifremi Güncelle</button>
+                    </div>
+                </div>
+
+                <div style="display: none;" id="status">
+                    <div class="alert alert-success">
+                        <strong>Harika!</strong> Şifren değişti, bir daha unutma :)
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
