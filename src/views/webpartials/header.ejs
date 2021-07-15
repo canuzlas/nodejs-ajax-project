@@ -2,16 +2,16 @@
 <div class="header">
 	<div class="agile-top-header">
 		<div class="logo">
-			<h1><a href="/">Fan<span>tas</span>tic F<span>oo</span>d </a></h1>
+			<h1><a href="/">Uz<span>la</span>ş Ya<span>zı</span>lım </a></h1>
 		</div>
 		<!-- navigation -->
 		<div class="top-left">
 			<div class="top-icons">
 				<ul>
-					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>Facebook </a></li>
-					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter </a></li>
-					<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i>Google </a></li>
-					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i>Linkedin</a></li>
+					<li><a target="_blank" href="<%- socials[0].socialmedia_link %> "><i class="fa fa-instagram" aria-hidden="true"></i>İnstagram </a></li>
+					<li><a target="_blank" href="<%- socials[1].socialmedia_link %> "><i class="fa fa-facebook" aria-hidden="true"></i>Facebook </a></li>
+					<li><a target="_blank" href="<%- socials[2].socialmedia_link %> "><i class="fa fa-twitter" aria-hidden="true"></i>Twitter </a></li>
+					<li><a target="_blank" href="https://wa.me/<%- socials[3].socialmedia_link %> "><i class="fa fa-phone"></i>Whatsapp</a></li>
 				</ul>
 			</div>
 			<div class="top-nav">
@@ -48,60 +48,39 @@
 	<div class="slider">
 	    <!-- Slideshow 3 -->
 	    <ul class="rslides" id="slider">
-			<li>	
-				<img src="/web/images/bg1.jpg" alt="">
-					<div class="slider-info">
-						<h4>Lorem ipsum amet dolor</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur et dolore magna aliqua.</p>
-						<div class="button">
-							<a href="#" data-toggle="modal" data-target="#myModal">Get More<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+			<% sliders.forEach(slider => { %>
+				<li>	
+					<img src="/web/sliders/<%- slider.slider_resim %>" alt="<% slider.slider_baslik+' resim' %> ">
+						<div class="slider-info">
+							<h4><%- slider.slider_baslik %></h4>
+							<p><%- slider.slider_altaciklama %></p>
+							<div class="button">
+								<a href="#" data-toggle="modal" data-target="#<%-slider._id%> ">Daha Fazla<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+							</div>
 						</div>
-					</div>
-			</li>
-			<li>
-				<img src="/web/images/bg2.jpg" alt="">
-					<div class="slider-info">
-						<h4>adiping elitrs eius tempo</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur et dolore magna aliqua.</p>
-						<div class="button">
-							<a href="#" data-toggle="modal" data-target="#myModal">Get More<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
-						</div>
-					</div>
-			</li>
-			<li>
-				<img src="/web/images/bg3.jpg" alt="">
-					<div class="slider-info">
-						<h4>incidit ut labo dol magna</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur et dolore magna aliqua.</p>
-						<div class="button">
-							<a href="#" data-toggle="modal" data-target="#myModal">Get More<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
-						</div>
-					</div>
-			</li>
-	    </ul>
-	    <!-- Slideshow 3 Pager -->
-	    <ul id="slider3-pager">
-	      <li><a href="#"><img src="/web/images/bgs-11.jpg" alt=""></a></li>
-	      <li><a href="#"><img src="/web/images/bgs-22.jpg" alt=""></a></li>
-	      <li><a href="#"><img src="/web/images/bgs-33.jpg" alt=""></a></li>
+				</li>
+			<% }) %>
 	    </ul>
     </div>	
 </div>
 
+<% sliders.forEach(slider => { %>
+	
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" >
+	<div class="modal fade" id="<%-slider._id%>" tabindex="-1" role="dialog" >
 		<div class="modal-dialog">
 		<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4>Our Fantastic Food</h4>
-							<img src="/web/images/m1.jpg" alt="Food" />
-							<span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+						<h4><%- slider.slider_baslik %> </h4>
+							<img src="/web/sliders/<%- slider.slider_resim %>" alt="Food" />
+							<span><%- slider.slider_more %> </span>
 				</div>
 			</div>
 						
 		</div>
 	</div>
 	<!-- //Modal -->
+<% }) %>
 <!-- //header -->
